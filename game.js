@@ -6,6 +6,14 @@ function getComputerChoice() {
 computerSelection = getComputerChoice()
 playerSelection = prompt("Enter your selection: ").toLowerCase()[0]
 
+function playRound(computerSelection, playerSelection){
+    if (computerSelection == playerSelection) {
+        return "It's a Tie"
+    } else {
+        return "lest see"
+    }
+}
 
-console.log(computerSelection)
-console.log(playerSelection)
+console.log("computer" + computerSelection)
+console.log("player" + playerSelection)
+console.log(playRound(computerSelection, playerSelection))
