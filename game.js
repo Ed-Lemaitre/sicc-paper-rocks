@@ -10,9 +10,36 @@ function playRound(computerSelection, playerSelection){
     if (computerSelection == playerSelection) {
         return "It's a Tie"
     } else {
-        return "lest see"
+        return defineWinner(computerSelection, playerSelection)
     }
 }
+
+function defineWinner(computerSelection,playerSelection){
+    if (computerSelection == "s") {
+        if (playerSelection == "p") {
+            return "You Lose! Scissors beats Paper."
+        } else {
+            return "You Win! Rocks beats Scissors."
+        }
+    }
+    if (computerSelection == "p") {
+        if (playerSelection == "r") {
+            return "You Lose! Paper beats Rock."
+        } else {
+            return "You Win! Scissors beats Paper."
+        }
+    }
+    if (computerSelection == "r") {
+        if (playerSelection == "s") {
+            return "You Lose! Rock beats Scissors."
+        } else {
+            return "You Win! Paper beats Rock."
+        }
+    }
+}
+
+
+
 
 console.log("computer" + computerSelection)
 console.log("player" + playerSelection)
