@@ -1,4 +1,4 @@
-let computerPoints = 0, playerPoints = 0
+let computerPoints = 0, playerPoints = 0, playerSelection = '', computerSelection = ''
 
 function getComputerChoice() {    //Computer selects a random choice
     let computerPlay = ['Scissors', 'Paper', 'Rock']
@@ -45,27 +45,45 @@ function defineWinner(computerSelection, playerSelection) {
 
 function jugar(playerSelection) {
     computerSelection = getComputerChoice();
-    console.log("El PC jugó: " + computerSelection + ". Tu jugaste: " + playerSelection);
+    player_selection.innerText = `Sacaste ${playerSelection}`;
+    computer_selection.innerText = `El computador sacó ${computerSelection}`;
     resultadoRonda = playRound(computerSelection, playerSelection);
     if (resultadoRonda == "It's a Tie") {
-        console.log("Empataron!!!. Juegen otra Ronda");
+        resultado.innerText = "Empataron!!!. Juegen otra Ronda";
+    } else {
+        resultado.innerText = "";
     }
-    console.log("Tu puntaje: " + playerPoints);
-    console.log("El Puntaje del PC: " + computerPoints);
+    p_player.innerText = `Tu puntaje es: ${playerPoints}`;
+    p_computer.innerText = `El Computador tiene ${computerPoints} puntos.`;
 
     if (playerPoints + computerPoints == 5) {
         if (playerPoints > computerPoints) {
-            console.log("Congratulations!!!! You WIN!!!");
+            resultado.innerText = "FELICITACIONES HAS GANADO. JUEGA DE NUEVO!!";
         } else {
-            console.log("Loser!!!");
+            resultado.innerText = "PERDISTE!!. JUEGA DE NUEVO";
         }
-        console.log("Juega de nuevo!!");
         computerPoints = 0, playerPoints = 0
     }
 }
 
-//add event listener to buttons
+const body = document.querySelector('body');
+const div = document.createElement('div');
+const h1title = document.createElement('h1');
+const p_player = document.createElement('p');
+const p_computer = document.createElement('p');
+const player_selection = document.createElement('p');
+const computer_selection = document.createElement('p');
+const resultado = document.createElement('p');
+body.appendChild(h1title);
+body.appendChild(p_player);
+body.appendChild(p_computer);
+body.appendChild(player_selection);
+body.appendChild(computer_selection);
+body.appendChild(resultado);
+h1title.innerText = "Bienvenido al juego!! Haz tu elección";
 
+
+//add event listener to buttons
 const buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
