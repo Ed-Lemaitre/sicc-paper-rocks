@@ -1,7 +1,7 @@
 let computerPoints = 0, playerPoints = 0
 
 function getComputerChoice() {    //Computer selects a random choice
-    let computerPlay = ['s', 'p', 'r']
+    let computerPlay = ['Scissors', 'Paper', 'Rock']
     return computerPlay[Math.floor(Math.random() * 3)]
 }
 
@@ -14,8 +14,8 @@ function playRound(computerSelection, playerSelection) {     // This func with d
 }
 
 function defineWinner(computerSelection, playerSelection) {
-    if (computerSelection == "s") {
-        if (playerSelection == "p") {
+    if (computerSelection == "Scissors") {
+        if (playerSelection == "Paper") {
             computerPoints = computerPoints + 1;
             return computerPoints;
         } else {
@@ -23,8 +23,8 @@ function defineWinner(computerSelection, playerSelection) {
             return playerPoints;
         }
     }
-    if (computerSelection == "p") {
-        if (playerSelection == "r") {
+    if (computerSelection == "Paper") {
+        if (playerSelection == "Rock") {
             computerPoints = computerPoints + 1;
             return computerPoints;
         } else {
@@ -32,8 +32,8 @@ function defineWinner(computerSelection, playerSelection) {
             return playerPoints;
         }
     }
-    if (computerSelection == "r") {
-        if (playerSelection == "s") {
+    if (computerSelection == "Rock") {
+        if (playerSelection == "Scissors") {
             computerPoints = computerPoints + 1;
             return computerPoints;
         } else {
@@ -49,30 +49,25 @@ function jugar(playerSelection) {
     resultadoRonda = playRound(computerSelection, playerSelection);
     if (resultadoRonda == "It's a Tie") {
         console.log("Empataron!!!. Juegen otra Ronda");
-        i = i - 1;
-        console.log("Tu puntaje: " + playerPoints);
-        console.log("El Puntaje del PC: " + computerPoints);
-    } else {
-        console.log("Tu puntaje: " + playerPoints);
-        console.log("El Puntaje del PC: " + computerPoints);
     }
-    if (playerPoints > computerPoints) {
-        console.log("Congratulations!!!! You WIN!!!");
-    } else {
-        console.log("Loser!!!");
+    console.log("Tu puntaje: " + playerPoints);
+    console.log("El Puntaje del PC: " + computerPoints);
+
+    if (playerPoints + computerPoints == 5) {
+        if (playerPoints > computerPoints) {
+            console.log("Congratulations!!!! You WIN!!!");
+        } else {
+            console.log("Loser!!!");
+        }
+        console.log("Juega de nuevo!!");
+        computerPoints = 0, playerPoints = 0
     }
-
-
 }
 
 //add event listener to buttons
 
 const buttons = document.querySelectorAll('button');
-
-// we use the .forEach method to iterate through each button
 buttons.forEach((button) => {
-
-    // and for each one we add a 'click' listener
     button.addEventListener('click', () => {
         jugar(button.innerText);
     });
