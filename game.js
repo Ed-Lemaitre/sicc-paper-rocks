@@ -43,21 +43,18 @@ function defineWinner(computerSelection, playerSelection) {
     }
 }
 
-function playingGame() {
-    for (let i = 0; i < 5; i++) {
-        computerSelection = getComputerChoice();
-        //playerSelection = prompt("Enter your selection: ").toLowerCase()[0];
-        console.log("El PC jugó: " + computerSelection + ". Tu jugaste: " + playerSelection);
-        resultadoRonda = playRound(computerSelection, playerSelection);
-        if (resultadoRonda == "It's a Tie") {
-            console.log("Empataron!!!. Juegen otra Ronda");
-            i = i - 1;
-            console.log("Tu puntaje: " + playerPoints);
-            console.log("El Puntaje del PC: " + computerPoints);
-        } else {
-            console.log("Tu puntaje: " + playerPoints);
-            console.log("El Puntaje del PC: " + computerPoints);
-        }
+function jugar(playerSelection) {
+    computerSelection = getComputerChoice();
+    console.log("El PC jugó: " + computerSelection + ". Tu jugaste: " + playerSelection);
+    resultadoRonda = playRound(computerSelection, playerSelection);
+    if (resultadoRonda == "It's a Tie") {
+        console.log("Empataron!!!. Juegen otra Ronda");
+        i = i - 1;
+        console.log("Tu puntaje: " + playerPoints);
+        console.log("El Puntaje del PC: " + computerPoints);
+    } else {
+        console.log("Tu puntaje: " + playerPoints);
+        console.log("El Puntaje del PC: " + computerPoints);
     }
     if (playerPoints > computerPoints) {
         console.log("Congratulations!!!! You WIN!!!");
@@ -69,6 +66,14 @@ function playingGame() {
 }
 
 //add event listener to buttons
-const buttons = document.querySelectorAll('buttons');
 
-playingGame()
+const buttons = document.querySelectorAll('button');
+
+// we use the .forEach method to iterate through each button
+buttons.forEach((button) => {
+
+    // and for each one we add a 'click' listener
+    button.addEventListener('click', () => {
+        jugar(button.innerText);
+    });
+});
