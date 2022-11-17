@@ -46,7 +46,7 @@ function defineWinner(computerSelection, playerSelection) {
 function playingGame() {
     for (let i = 0; i < 5; i++) {
         computerSelection = getComputerChoice();
-        playerSelection = prompt("Enter your selection: ").toLowerCase()[0];
+        //playerSelection = prompt("Enter your selection: ").toLowerCase()[0];
         console.log("El PC jugó: " + computerSelection + ". Tu jugaste: " + playerSelection);
         resultadoRonda = playRound(computerSelection, playerSelection);
         if (resultadoRonda == "It's a Tie") {
@@ -68,5 +68,7 @@ function playingGame() {
 
 }
 
+//add event listener to buttons
+const buttons = document.querySelectorAll('buttons');
 
 playingGame()
